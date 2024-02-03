@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AR_Street_Scene.unity
-    guid: c101dab125a09434f8f9f37f0424ccd6
+    path: Assets/Hackathon/MainScene.unity
+    guid: 200d98608595bf34ea62b3225fb90d04
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 69a2924fe4ca4d34688611f57b2f27ba,
       type: 2}
