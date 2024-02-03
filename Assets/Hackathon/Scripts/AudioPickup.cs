@@ -4,11 +4,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Random = System.Random;
 
 [RequireComponent(typeof(XRGrabInteractable))]
 public class AudioPickup : MonoBehaviour
 {
-    [SerializeField] private AudioClip clipForItem;
+    [SerializeField] private List<AudioClip> clipsForItem;
     private XRGrabInteractable _xrGrabInteractable;
     private void OnEnable()
     {
@@ -26,7 +27,7 @@ public class AudioPickup : MonoBehaviour
     public void PlayMyClip(SelectEnterEventArgs args)
     {
        if(args.interactableObject == (IXRSelectInteractable)_xrGrabInteractable)
-            ClipManager.Instance.PlayQuote(clipForItem);
+            ClipManager.Instance.PlayQuote(clipsForItem[ UnityEngine.Random.Range(0,clipsForItem.Count)]);
     }
 
 }

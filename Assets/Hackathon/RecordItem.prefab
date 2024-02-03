@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c60ec9c330e0f994494577eeb0e13a60, type: 2}
+  - {fileID: 5559263773472392200, guid: 714a27c3372b8074d8370e2bc0cecf56, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -323,7 +323,7 @@ GameObject:
   - component: {fileID: 7567925033995915262}
   m_Layer: 0
   m_Name: RecordItem
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdb5922245b49824582380206e7a08e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clipForItem: {fileID: 8300000, guid: b75ee00609a88bb46a7fdec7e705394a, type: 3}
+  clipsForItem: []
 --- !u!65 &7567925033995915262
 BoxCollider:
   m_ObjectHideFlags: 0
