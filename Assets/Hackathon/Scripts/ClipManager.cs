@@ -15,12 +15,7 @@ public class ClipManager : MonoBehaviour
         else
             Destroy(this);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void PlayQuote(AudioClip clip)
     {
