@@ -27,6 +27,6 @@ public class ClipManager : MonoBehaviour
         if (clip == currentQuote) return;
 
         currentQuote = clip;
-        AudioManager.instance.PlayTriggerAudio(clip);
+        AudioManager.instance.PlayTriggerAudio(clip, gameObject);
     }
 }

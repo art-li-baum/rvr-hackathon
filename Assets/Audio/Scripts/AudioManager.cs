@@ -55,7 +55,6 @@ public class AudioManager : MonoBehaviour
         triggerdAudio.clip = clip;
         triggerdAudio.Play();
         audioMixer.SetFloat("AmbienceVolume", ambienceVolume);
-
         SnapObject.RemoveObject(obj);
 
         //Starts the timer that resets the audio 

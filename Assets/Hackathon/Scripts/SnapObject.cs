@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class SnapObject : MonoBehaviour
 {
@@ -11,12 +13,12 @@ public class SnapObject : MonoBehaviour
     
     public static void RemoveObject(GameObject obj)
     {
+        print(obj.name);
         //Removes the gameobject from the snap list
         if (!snappedObjects.ContainsKey(obj)) { return; }
         foreach (var snappedObject in snappedObjects)
         {
             if(snappedObject.Key != obj) { continue; }
-            print("RemovedOBJ");
             obj.GetComponent<Rigidbody>().isKinematic = false;
             snappedObjects.Remove(obj);
         }
@@ -28,7 +30,7 @@ public class SnapObject : MonoBehaviour
         //Adds teh gameobject to the snap list
         if(!snappedObjects.ContainsKey(other.gameObject))
         {
-            print("AddedOBJ");
+            if (other.gameObject.GetComponent<XRGrabInteractable>().isSelected) { return; }
             other.transform.position = transform.position + snapPos;
             other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
