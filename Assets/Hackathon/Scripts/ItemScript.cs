@@ -24,7 +24,15 @@ public class ItemScript : MonoBehaviour
         XRGrabInteractable _XRGrabInteractable = gameObject.GetComponentInChildren<XRGrabInteractable>();        
         
 
-        _XRGrabInteractable.selectEntered.AddListener(delegate { AudioManager.instance.PlayTriggerAudio(clipForItem); });
+        _XRGrabInteractable.selectEntered.AddListener(delegate { AudioManager.instance.PlayTriggerAudio(clipForItem, gameObject); });
+        
+        foreach(Transform t in gameObject.GetComponentsInChildren<Transform>())
+        {
+            t.tag = "Item";
+        }
     }
-
+    private void OnDrawGizmos()
+    { 
+       Gizmos.DrawMesh(meshForItem, transform.position, Quaternion.identity, transform.localScale);
+    }
 }

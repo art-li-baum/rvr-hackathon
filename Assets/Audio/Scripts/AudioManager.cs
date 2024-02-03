@@ -10,9 +10,11 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField]private AudioSource triggerdAudio;
     [SerializeField]private AudioSource backgroundAudio;
+    [SerializeField]private AudioSource recordPlayerAudioSource;
     [SerializeField]private AudioMixer audioMixer;
 
     [SerializeField, Range(-80, 0)] private float ambienceVolume = -40; 
+    [SerializeField, Range(-80, 0)] private float recordVolume = -10; 
 
     [SerializeField] private AudioClip calmBackground;
 
@@ -35,7 +37,7 @@ public class AudioManager : MonoBehaviour
     /// Plays any audio like dialouge 
     /// </summary>
     /// <param name="clip"></param>
-    public void PlayTriggerAudio(AudioClip clip)
+    public void PlayTriggerAudio(AudioClip clip, GameObject obj)
     {
         
         if(triggerdAudio.isPlaying) 
@@ -53,6 +55,8 @@ public class AudioManager : MonoBehaviour
         triggerdAudio.clip = clip;
         triggerdAudio.Play();
         audioMixer.SetFloat("AmbienceVolume", ambienceVolume);
+
+        SnapObject.RemoveObject(obj);
 
         //Starts the timer that resets the audio 
         audioMixerRetreat = StartCoroutine(AudioMixerRetreat(clip.length));
@@ -77,6 +81,7 @@ public class AudioManager : MonoBehaviour
         triggerdAudio.clip = clip;
         triggerdAudio.Play();
         audioMixer.SetFloat("AmbienceVolume", ambienceVolume);
+        audioMixer.SetFloat("RecordVolume", recordVolume);
 
         //Starts the timer that resets the audio 
         audioMixerRetreat = StartCoroutine(AudioMixerRetreat(clip.length));
@@ -100,6 +105,18 @@ public class AudioManager : MonoBehaviour
         backgroundAudio.loop = true;
         backgroundAudio.Play();
     }
+    public void RecordPlayer(AudioClip clip, Transform tr)
+    {
+        recordPlayerAudioSource.clip = clip;
+        recordPlayerAudioSource.loop = true;
+        recordPlayerAudioSource.spatialBlend = 1.0f;
+        recordPlayerAudioSource.spatialize = true;
+    }
+    public void RemoveRecord()
+    {
+        recordPlayerAudioSource.Stop();
+        recordPlayerAudioSource.clip = null;
+    }
     private void OnDestroy()
     {
         StopAllCoroutines();
@@ -113,5 +130,6 @@ public class AudioManager : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         audioMixer.SetFloat("AmbienceVolume", 0);
+        audioMixer.SetFloat("RecordVolume", 0);
     }
 }
